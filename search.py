@@ -43,10 +43,7 @@ class SecondTab:
             self.our_price = self.driver2.find_element(By.CSS_SELECTOR,
                                                        value='[data-id="732090"] .sellerOfferPrice').text.replace(
                 '₹', '').replace(',', '')
-            # self.price_list = [price.text.replace(
-            #     '₹', '').replace(',', '') for price in self.driver2.find_elements(By.CLASS_NAME,
-            #                                                                       value='sellerOfferPrice')]
-
+            
             self.price_list = [price.text.replace(
                     '₹', '').replace(',', '') for price in self.driver2.find_elements(By.CLASS_NAME,
                                                                                       '[class="pdp-md-selname-text ft-med ws-nowrap sellerOfferPrice"]')]
