@@ -10,8 +10,8 @@ class SellerLogin:
         self.chrome_options.add_experimental_option("detach", True)
         self.driver1 = webdriver.Chrome(options=self.chrome_options)
         self.driver1.get(url)
-        self.username = "sellermailid"
-        self.password = "sellerpassword"
+        self.username = "e732090@bfl.com"
+        self.password = "biligiri24"
 
     def login(self):
         time.sleep(2)
@@ -35,11 +35,19 @@ class SellerLogin:
 
     def update_price(self, price, model_id):
         self.driver1.maximize_window()
-        search_input = self.driver1.find_element(By.ID, value="searchinput")
-        search_input.clear()
-        search_input.send_keys(model_id)
-        search_input.send_keys(Keys.ENTER)
-        time.sleep(1)
+        try:
+            search_input = self.driver1.find_element(By.ID, value="searchinput")
+            search_input.clear()
+            search_input.send_keys(model_id)
+            search_input.send_keys(Keys.ENTER)
+            time.sleep(1)
+        except:
+            time.sleep(2)
+            search_input = self.driver1.find_element(By.ID, value="searchinput")
+            search_input.clear()
+            search_input.send_keys(model_id)
+            search_input.send_keys(Keys.ENTER)
+            time.sleep(1)
         price_button = self.driver1.find_element(By.CSS_SELECTOR, '[class="rupee stockInput"]')
         price_button.click()
         time.sleep(1)
@@ -55,7 +63,6 @@ class SellerLogin:
             time.sleep(2)
             close_img = self.driver1.find_element(By.CSS_SELECTOR, '[class="closeImg"]')
             close_img.click()
-
 
 
 
