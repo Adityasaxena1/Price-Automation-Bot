@@ -11,7 +11,7 @@ class SecondTab:
         self.first_iteration = True
         self.selected = True
         self.our_price = None
-        self.price_list = None
+        self.offer_price = None
 
     def product_search(self, value):
         self.driver2.get(f'https://www.bajajmall.in/emi-store/search.html?q={value}')
@@ -43,18 +43,19 @@ class SecondTab:
             self.our_price = self.driver2.find_element(By.CSS_SELECTOR,
                                                        value='[data-id="732090"] .sellerOfferPrice').text.replace(
                 '₹', '').replace(',', '')
-            
-            self.price_list = [price.text.replace(
-                    '₹', '').replace(',', '') for price in self.driver2.find_elements(By.CLASS_NAME,
-                                                                                      '[class="pdp-md-selname-text ft-med ws-nowrap sellerOfferPrice"]')]
-
             self.selected = self.driver2.find_element(By.CSS_SELECTOR, value='[data-sellerid="732090"]').is_selected()
+
+            self.driver2.find_element(By.CSS_SELECTOR, '[class="pdp-modal-close popup-close dsp-mobile"]').click()
+            self.offer_price = self.driver2.find_element(By.CSS_SELECTOR,
+                                                         '[class="ft-med-lt absolute-discount-calc-offer-price "]'). \
+                text.replace(',', '')
+            time.sleep(1)
 
 
 
         except:
             time.sleep(2)
-            price_list = [self.driver2.find_element(By.CSS_SELECTOR,
-                                                    '[class="ft-med-lt absolute-discount-calc-offer-price "]').text.
-                          replace(',', '')]
-            self.our_price = price_list[-1]
+            self.selected = True
+            self.our_price = self.driver2.find_element(By.CSS_SELECTOR,
+                                                         '[class="ft-med-lt absolute-discount-calc-offer-price "]'). \
+                text.replace(',', '')
