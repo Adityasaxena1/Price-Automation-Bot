@@ -10,8 +10,8 @@ class SellerLogin:
         self.chrome_options.add_experimental_option("detach", True)
         self.driver1 = webdriver.Chrome(options=self.chrome_options)
         self.driver1.get(url)
-        self.username = "e732090@bfl.com"
-        self.password = "biligiri24"
+        self.username = "sellerusername"
+        self.password = "sellerpassword"
 
     def login(self):
         time.sleep(2)
